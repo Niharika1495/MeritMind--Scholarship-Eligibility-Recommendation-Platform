@@ -6,7 +6,18 @@ from typing import Generator
 
 logger = logging.getLogger("meritmind.database")
 
+IS_SQLITE = False
+
+def safe_print(msg: str):
+    try:
+        print(msg)
+    except UnicodeEncodeError:
+        # Fallback for Windows consoles with cp1252 character encoding
+        clean_msg = msg.encode("ascii", "replace").decode("ascii")
+        print(clean_msg)
+
 def create_db_engine():
+    global IS_SQLITE
     try:
         # Attempt MySQL engine creation and connection ping
         engine = create_engine(
@@ -17,10 +28,14 @@ def create_db_engine():
         )
         # Test connection
         with engine.connect() as conn:
-            logger.info("Successfully connected to MySQL database.")
+            safe_print("✓ Connected to MySQL")
+            logger.info("✓ Connected to MySQL")
+            IS_SQLITE = False
             return engine
     except Exception as e:
-        logger.warning(f"MySQL connection failed ({e}). Falling back to local SQLite database (meritmind.db).")
+        safe_print(f"⚠ MySQL unavailable. Using SQLite. ({e})")
+        logger.warning(f"⚠ MySQL unavailable. Using SQLite. ({e})")
+        IS_SQLITE = True
         sqlite_url = "sqlite:///./meritmind.db"
         return create_engine(
             sqlite_url,

@@ -36,6 +36,7 @@ mysql_data/
 # Python
 __pycache__/
 *.pyc
+*.db
 .venv/
 venv/
 

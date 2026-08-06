@@ -14,7 +14,7 @@ class Settings(BaseSettings):
     # Database Settings
     MYSQL_USER: str = os.getenv("MYSQL_USER", "root")
     MYSQL_PASSWORD: str = os.getenv("MYSQL_PASSWORD", "")
-    MYSQL_HOST: str = os.getenv("MYSQL_HOST", "localhost")
+    MYSQL_HOST: str = os.getenv("MYSQL_HOST", "127.0.0.1")
     MYSQL_PORT: str = os.getenv("MYSQL_PORT", "3306")
     MYSQL_DB: str = os.getenv("MYSQL_DB", "meritmind")
     
@@ -25,10 +25,10 @@ class Settings(BaseSettings):
 
     # CORS Settings
     BACKEND_CORS_ORIGINS: List[str] = [
-        "http://localhost:8080",
-        "http://localhost:5173",
         "http://127.0.0.1:8080",
         "http://127.0.0.1:5173",
+        "http://localhost:8080",
+        "http://localhost:5173",
     ]
 
     class Config:
