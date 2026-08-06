@@ -1,4 +1,4 @@
-import { apiRequest } from "./apiClient";
+import { apiRequest, apiUpload, getApiUrl } from "./apiClient";
 
 export type VaultDocument = {
   id: string;
@@ -23,18 +23,7 @@ export const documentService = {
     formData.append("file", file);
     formData.append("docType", docType);
 
-    const token = localStorage.getItem("meritmind_token");
-    const response = await fetch("http://127.0.0.1:8000/api/documents/upload", {
-      method: "POST",
-      headers: token ? { Authorization: `Bearer ${token}` } : {},
-      body: formData,
-    });
-
-    if (!response.ok) {
-      throw new Error("Failed to upload document");
-    }
-
-    return response.json();
+    return apiUpload<VaultDocument>("/documents/upload", formData);
   },
 
   delete: async (docId: string): Promise<void> => {
@@ -42,6 +31,6 @@ export const documentService = {
   },
 
   downloadUrl: (docId: string): string => {
-    return `http://127.0.0.1:8000/api/documents/${docId}/download`;
+    return getApiUrl(`/documents/${docId}/download`);
   },
 };

@@ -11,7 +11,18 @@ export class ApiError extends Error {
   }
 }
 
-const BASE_URL = "http://127.0.0.1:8000/api";
+const API_BASE_URL = (
+  import.meta.env.VITE_API_URL || "https://meritmind-backend.onrender.com"
+).replace(/\/$/, "");
+
+export const API_URL = API_BASE_URL.endsWith("/api")
+  ? API_BASE_URL
+  : `${API_BASE_URL}/api`;
+
+export function getApiUrl(path: string): string {
+  const cleanPath = path.startsWith("/") ? path : `/${path}`;
+  return `${API_URL}${cleanPath}`;
+}
 
 export async function apiRequest<T>(
   method: "GET" | "POST" | "PUT" | "DELETE",
@@ -40,7 +51,7 @@ export async function apiRequest<T>(
   }
 
   try {
-    const res = await fetch(`${BASE_URL}${path}`, options);
+    const res = await fetch(getApiUrl(path), options);
     if (!res.ok) {
       const errBody = await res.json().catch(() => ({ detail: "API Error occurred" }));
       throw new ApiError(errBody.detail || "Request failed", res.status);
@@ -51,5 +62,34 @@ export async function apiRequest<T>(
       throw err;
     }
     throw new ApiError(err.message || "Network connection failure", 500);
+  }
+}
+
+export async function apiUpload<T>(path: string, formData: FormData): Promise<T> {
+  const headers: Record<string, string> = {};
+
+  if (typeof window !== "undefined") {
+    const token = window.localStorage.getItem("meritmind_token");
+    if (token) {
+      headers["Authorization"] = `Bearer ${token}`;
+    }
+  }
+
+  try {
+    const res = await fetch(getApiUrl(path), {
+      method: "POST",
+      headers,
+      body: formData,
+    });
+    if (!res.ok) {
+      const errBody = await res.json().catch(() => ({ detail: "Upload failed" }));
+      throw new ApiError(errBody.detail || "Upload failed", res.status);
+    }
+    return (await res.json()) as T;
+  } catch (err: any) {
+    if (err instanceof ApiError) {
+      throw err;
+    }
+    throw new ApiError(err.message || "Network upload error", 500);
   }
 }

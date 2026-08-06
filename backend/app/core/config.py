@@ -14,7 +14,7 @@ class Settings(BaseSettings):
     # Database Settings
     MYSQL_USER: str = os.getenv("MYSQL_USER", "root")
     MYSQL_PASSWORD: str = os.getenv("MYSQL_PASSWORD", "")
-    MYSQL_HOST: str = os.getenv("MYSQL_HOST", "127.0.0.1")
+    MYSQL_HOST: str = os.getenv("MYSQL_HOST", "mysql")
     MYSQL_PORT: str = os.getenv("MYSQL_PORT", "3306")
     MYSQL_DB: str = os.getenv("MYSQL_DB", "meritmind")
     
@@ -24,12 +24,7 @@ class Settings(BaseSettings):
         return f"mysql+pymysql://{self.MYSQL_USER}:{self.MYSQL_PASSWORD}@{self.MYSQL_HOST}:{self.MYSQL_PORT}/{self.MYSQL_DB}"
 
     # CORS Settings
-    BACKEND_CORS_ORIGINS: List[str] = [
-        "http://127.0.0.1:8080",
-        "http://127.0.0.1:5173",
-        "http://localhost:8080",
-        "http://localhost:5173",
-    ]
+    BACKEND_CORS_ORIGINS: List[str] = ["*"]
 
     class Config:
         case_sensitive = True
