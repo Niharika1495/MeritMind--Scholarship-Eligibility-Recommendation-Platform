@@ -1,315 +1,386 @@
-# UniGrant Guide
+# 🎓 MeritMind – Scholarship Eligibility & Recommendation Platform
 
-This is the Project Overview you should give to Lovable before any feature prompts. It explains the vision, workflow, and scope so Lovable understands what you're building instead of treating it as a generic scholarship website.
+<p align="center">
+  <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react" />
+  <img src="https://img.shields.io/badge/FastAPI-0.115+-009688?logo=fastapi" />
+  <img src="https://img.shields.io/badge/MySQL-8.0-4479A1?logo=mysql" />
+  <img src="https://img.shields.io/badge/TypeScript-5.x-3178C6?logo=typescript" />
+  <img src="https://img.shields.io/badge/TailwindCSS-4.x-06B6D4?logo=tailwindcss" />
+  <img src="https://img.shields.io/badge/License-MIT-green" />
+</p>
 
-MeritMind – Intelligent Scholarship Discovery & Recommendation Platform
+---
 
-Project Overview
+# 📖 About MeritMind
 
-MeritMind is an intelligent scholarship discovery and recommendation platform designed to help students find the most relevant scholarships from official sources without manually searching multiple websites.
+**MeritMind** is an AI-powered Scholarship Eligibility & Recommendation Platform designed to help students across India discover scholarships they are actually eligible for.
 
-Unlike traditional scholarship portals that simply list scholarships, MeritMind automatically collects scholarship information from official scholarship websites, maintains an up-to-date scholarship database, analyzes each student's academic, financial, and personal profile, and recommends the scholarships that best match the student's eligibility and overall profile.
+Unlike traditional scholarship portals that simply list opportunities, MeritMind automatically collects verified scholarships from trusted official sources, intelligently matches them against each student's profile, explains eligibility, and redirects students to the official scholarship provider for application.
 
-The platform acts as a personal scholarship advisor by continuously monitoring scholarship updates and presenting students with the most relevant opportunities.
+MeritMind **does not accept scholarship applications**. Students always apply on the official scholarship provider's website while MeritMind tracks their application progress and provides reminders.
 
-The primary goal of MeritMind is to reduce the time students spend searching for scholarships while increasing their chances of finding suitable opportunities.
+---
 
-Problem Statement
+# 🚀 Key Features
 
-Students often face several challenges while applying for scholarships:
+## 🎯 Intelligent Scholarship Matching
 
-Scholarship information is scattered across multiple official websites.
+- Personalized scholarship recommendations
+- Eligibility verification
+- Match percentage calculation
+- Recommendation priority
+- Missing eligibility explanation
+- Deadline priority
 
-Eligibility criteria differ across providers.
+---
 
-Deadlines change frequently.
+## 👤 Student Profile
 
-Students are unaware of scholarships they are eligible for.
+- Secure Registration & Login
+- JWT Authentication
+- Multi-step Profile Setup
+- Academic Information
+- Financial Information
+- Category Details
+- Achievements
+- Skills
+- Profile Completion Tracking
 
-New scholarships are announced regularly and often go unnoticed.
+---
 
-Students spend hours comparing eligibility requirements manually.
+## 🔍 Scholarship Explorer
 
-MeritMind solves these problems by centralizing scholarship information and intelligently matching students with suitable scholarships.
+- Global Search
+- Advanced Filters
+- Sorting
+- Infinite Scroll
+- Pagination
+- Scholarship Details
+- Official Apply Links
 
-Core Idea
+---
 
-The platform should not behave like a simple scholarship listing website.
+## 🤖 AI Scholarship Advisor
 
-Instead, it should function as a personalized scholarship recommendation system.
+- AI-powered guidance
+- Profile improvement suggestions
+- Scholarship explanations
+- Natural language interaction
+- Database-grounded responses (no hallucinations)
 
-Every student should see a completely personalized experience based on their profile.
+---
 
-No two dashboards should look exactly the same because recommendations depend on the student's information.
+## 📄 Secure Document Vault
 
-How the Platform Works
+Students can securely store:
 
-Step 1
+- Aadhaar
+- Income Certificate
+- Bonafide Certificate
+- Caste Certificate
+- Disability Certificate
+- Resume
 
-The system automatically collects scholarship information from official scholarship websites through a web scraping service.
+> **Note:** MeritMind stores these documents only for student convenience. Documents are **never submitted** to scholarship providers.
 
-Examples:
+---
 
-National Scholarship Portal
+## 📊 Application Tracking
 
-AICTE
+Track scholarship applications with statuses such as:
 
-Reliance Foundation
+- Saved
+- Applying
+- Applied
+- Under Review
+- Documents Submitted
+- Interview Scheduled
+- Selected
+- Rejected
+- Offer Accepted
 
-HDFC
+---
 
-Tata Capital
+## 🔔 Smart Notifications
 
-ONGC
+- Deadline reminders
+- Recommendation updates
+- Profile completion reminders
+- Application tracking updates
 
-Other verified scholarship providers
+---
 
-This process runs periodically to keep scholarship information updated.
+## 🌐 Automatic Scholarship Collection
+
+MeritMind automatically collects scholarships from trusted official sources including:
+
+- National Scholarship Portal (NSP)
+- AICTE
+- UGC
+- State Government Scholarship Portals
+- Official University Scholarship Portals
+- Foundation Scholarships
+- CSR Scholarships
+
+The platform automatically:
+
+- Collects scholarships
+- Cleans data
+- Removes duplicates
+- Updates existing scholarships
+- Marks expired scholarships inactive
+
+---
+
+# 🏗️ System Architecture
+
+```text
+Official Scholarship Providers
+             │
+             ▼
+Automatic Collection Engine
+             │
+             ▼
+Data Cleaning & Normalization
+             │
+             ▼
+MySQL Database
+             │
+             ▼
+Recommendation Engine
+             │
+             ▼
+Student Dashboard
+             │
+             ▼
+Official Scholarship Website
+             │
+             ▼
+Application Tracking
+```
 
-Step 2
+---
 
-The scraped scholarship information is cleaned, validated, and stored in the database.
+# 💻 Tech Stack
 
-Each scholarship contains information such as
+## Frontend
 
-Scholarship Name
+- React 19
+- Vite
+- TypeScript
+- TanStack Router
+- TanStack Query
+- Tailwind CSS
+- Radix UI
+- React Hook Form
+- Zod
 
-Provider
+---
 
-Scholarship Amount
+## Backend
 
-Application Deadline
+- FastAPI
+- Python
+- SQLAlchemy
+- Pydantic
+- Alembic
+- JWT Authentication
 
-Minimum CGPA
+---
 
-Maximum Family Income
+## Database
 
-Eligible Branches
+- MySQL
 
-Eligible Categories
+---
 
-Eligible States
+## AI
 
-Required Documents
+- Google Gemini API
 
-Official Application Link
+---
 
-Step 3
+# 📂 Project Structure
 
-A student registers and creates a profile.
+```text
+MeritMind
+│
+├── backend/
+│   ├── app/
+│   │   ├── api/
+│   │   ├── collectors/
+│   │   ├── models/
+│   │   ├── schemas/
+│   │   ├── services/
+│   │   └── main.py
+│
+├── src/
+│   ├── components/
+│   ├── contexts/
+│   ├── routes/
+│   ├── services/
+│   └── features/
+│
+├── public/
+├── README.md
+└── package.json
+```
 
-The profile contains
+---
 
-Personal Details
+# 🔄 Workflow
 
-Name
+```text
+Landing Page
 
-Gender
+↓
 
-State
+Register
 
-Category
+↓
 
-Academic Details
+Login
 
-College
+↓
 
-Branch
+Complete Profile
 
-Current Year
+↓
 
-CGPA
+Recommendation Engine
 
-Financial Details
+↓
 
-Annual Family Income
+Personalized Scholarships
 
-Achievements
+↓
 
-Skills
+Apply on Official Website
 
-Certifications
+↓
 
-Internships
+Track Application
 
-Projects
+↓
 
-Hackathons
+Receive Notifications
+```
 
-Research Papers
+---
 
-The student should be able to update this information at any time.
+# 🎯 Recommendation Engine
 
-Step 4
+MeritMind evaluates:
 
-When the student visits the dashboard, the platform compares the student's profile against all available scholarships.
+- Education Level
+- Course / Branch
+- Category
+- Gender
+- State
+- Family Income
+- CGPA / Percentage
+- Disability Status
+- Minority Status
 
-The recommendation engine evaluates multiple criteria such as
+Only eligible scholarships are recommended.
 
-Academic eligibility
+---
 
-Financial eligibility
+# 🔒 Security
 
-Branch eligibility
+- JWT Authentication
+- Password Hashing
+- Protected APIs
+- Input Validation
+- Secure File Uploads
+- SQL Injection Protection
 
-Category eligibility
+---
 
-State eligibility
+# ⚡ Getting Started
 
-The system then calculates a compatibility score for every scholarship.
+## Clone Repository
 
-Step 5
+```bash
+git clone https://github.com/Niharika1495/MeritMind--Scholarship-Eligibility-Recommendation-Platform.git
+```
 
-Instead of showing every scholarship, the platform displays only the most relevant opportunities ranked by compatibility.
+---
 
-Each scholarship card displays
+## Frontend
 
-Match Percentage
-
-Scholarship Amount
-
-Deadline
-
-Eligibility Summary
-
-Why this scholarship matches the student
-
-Apply button
-
-Save button
-
-The Apply button redirects the student to the official scholarship website.
-
-Step 6
-
-Students can
-
-Save scholarships
-
-View saved scholarships
-
-Track application deadlines
-
-Receive notifications when new matching scholarships become available
-
-Receive reminders before deadlines
-
-Step 7 (Future Enhancement)
-
-The platform will include a Machine Learning module that predicts a student's Scholarship Readiness Score based on academic performance, extracurricular achievements, certifications, internships, and overall profile strength.
-
-This score will help students understand how competitive their profile is and what improvements they can make.
-
-Design Philosophy
-
-MeritMind should not look like a traditional admin dashboard.
-
-It should feel like a premium consumer product similar to Spotify, Duolingo, or Airbnb.
-
-The experience should be
-
-Personalized
-
-Minimal
-
-Interactive
-
-Modern
-
-Friendly
-
-Motivating
-
-The interface should guide students through their scholarship journey rather than overwhelming them with tables and forms.
-
-The homepage should immediately answer:
-
-What scholarships should I apply for today?
-
-What deadlines are approaching?
-
-How strong is my profile?
-
-What should I improve?
-
-Which scholarships are newly available?
-
-Target Users
-
-Undergraduate Students
-
-Postgraduate Students
-
-Diploma Students
-
-Engineering Students
-
-Medical Students
-
-Arts & Science Students
-
-Students searching for government or private scholarships
-
-Future Scope
-
-The platform architecture should be modular so future features can be added easily.
-
-Possible future enhancements include
-
-AI-powered scholarship assistant
-
-OCR document verification
-
-Scholarship application tracking
-
-Email notifications
-
-Mobile application
-
-Admin dashboard
-
-Analytics dashboard
-
-University-specific scholarship recommendations
-
-International scholarship support
-
-Important Development Guidelines
-
-Build reusable and modular components.
-
-Keep the UI highly responsive and accessible.
-
-Do not hardcode scholarship information; use mock data placeholders that can later be replaced with API responses.
-
-Organize the project with scalability in mind.
-
-Separate presentation, business logic, and API integration layers.
-
-Ensure the architecture can later integrate FastAPI, MySQL, web scraping services, and machine learning without major restructuring.
-
-Final Instruction to Lovable
-
-Build MeritMind as a premium product, not as a typical CRUD dashboard. The experience should feel like a personal scholarship coach that proactively discovers opportunities, recommends the best matches, tracks deadlines, and guides students throughout their scholarship journey with a modern, visually engaging interface.
-understand it dont generte anything
-
-This project was built with [Lovable](https://lovable.dev).
-
-## Build with Lovable
-
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/da3fe865-3795-41e5-9857-8a547e41fd8f).
-
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
-
-## Development
-
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
-
-```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
+```bash
+npm install
 npm run dev
 ```
+
+---
+
+## Backend
+
+```bash
+cd backend
+
+python -m venv .venv
+
+# Windows
+.venv\Scripts\activate
+
+pip install -r requirements.txt
+
+uvicorn app.main:app --reload
+```
+
+---
+
+# 🌟 Future Enhancements
+
+- Email Notifications
+- OCR-based Document Verification
+- Mobile Application
+- Analytics Dashboard
+- Multi-language Support
+- Scholarship Success Prediction
+- AI Interview Preparation
+
+---
+
+# 🎓 Project Highlights
+
+✔ Automatic Scholarship Collection
+
+✔ Personalized Recommendation Engine
+
+✔ AI Scholarship Advisor
+
+✔ Official Website Redirection
+
+✔ Secure Document Vault
+
+✔ Application Tracking
+
+✔ Smart Notifications
+
+✔ Responsive UI
+
+✔ Full Stack Architecture
+
+---
+
+# 📜 License
+
+This project is licensed under the MIT License.
+
+---
+
+# 👩‍💻 Developed By
+
+**Idamakanti Niharika**
+
+B.Tech – Computer Science & Engineering
+
+VIT Bhimavaram
+
+---
+
+## ⭐ If you found this project useful, consider giving it a Star!
