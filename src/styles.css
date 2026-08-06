@@ -1,0 +1,192 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 6px);
+  --radius-2xl: calc(var(--radius) + 12px);
+  --radius-3xl: calc(var(--radius) + 20px);
+  --radius-4xl: calc(var(--radius) + 32px);
+  --font-display: "Sora", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-soft: var(--primary-soft);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent-soft: var(--accent-soft);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ink: var(--ink);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+}
+
+:root {
+  --radius: 0.875rem;
+  --background: oklch(0.984 0.004 247.9);
+  --foreground: oklch(0.22 0.03 275);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.22 0.03 275);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.22 0.03 275);
+  --primary: oklch(0.45 0.24 297);
+  --primary-foreground: oklch(0.99 0.005 300);
+  --primary-soft: oklch(0.93 0.05 300);
+  --secondary: oklch(0.51 0.21 277);
+  --secondary-foreground: oklch(0.99 0.005 300);
+  --muted: oklch(0.965 0.008 285);
+  --muted-foreground: oklch(0.52 0.03 280);
+  --accent: oklch(0.7 0.19 45);
+  --accent-foreground: oklch(0.18 0.04 40);
+  --accent-soft: oklch(0.95 0.05 60);
+  --success: oklch(0.66 0.15 155);
+  --success-foreground: oklch(0.16 0.03 155);
+  --destructive: oklch(0.6 0.23 25);
+  --destructive-foreground: oklch(0.99 0.005 300);
+  --border: oklch(0.91 0.012 285);
+  --input: oklch(0.91 0.012 285);
+  --ring: oklch(0.45 0.24 297);
+  --ink: oklch(0.17 0.035 285);
+  --chart-1: oklch(0.45 0.24 297);
+  --chart-2: oklch(0.51 0.21 277);
+  --chart-3: oklch(0.7 0.19 45);
+  --chart-4: oklch(0.66 0.15 155);
+  --chart-5: oklch(0.62 0.19 340);
+  --gradient-aurora: radial-gradient(
+      120% 120% at 10% 0%,
+      color-mix(in oklab, var(--primary) 26%, transparent) 0%,
+      transparent 55%
+    ),
+    radial-gradient(
+      90% 90% at 95% 10%,
+      color-mix(in oklab, var(--accent) 24%, transparent) 0%,
+      transparent 60%
+    ),
+    radial-gradient(
+      100% 100% at 50% 100%,
+      color-mix(in oklab, var(--secondary) 20%, transparent) 0%,
+      transparent 60%
+    );
+  --gradient-hero: linear-gradient(135deg, var(--primary), var(--secondary) 55%, var(--accent));
+  --shadow-soft: 0 1px 2px oklch(0.3 0.05 285 / 0.04), 0 12px 32px -12px oklch(0.3 0.08 285 / 0.18);
+  --shadow-lift: 0 2px 6px oklch(0.3 0.05 285 / 0.06), 0 28px 60px -24px oklch(0.35 0.12 290 / 0.28);
+}
+
+.dark {
+  --background: oklch(0.16 0.03 285);
+  --foreground: oklch(0.97 0.006 285);
+  --card: oklch(0.21 0.035 285);
+  --card-foreground: oklch(0.97 0.006 285);
+  --popover: oklch(0.21 0.035 285);
+  --popover-foreground: oklch(0.97 0.006 285);
+  --primary: oklch(0.65 0.2 300);
+  --primary-foreground: oklch(0.14 0.03 290);
+  --primary-soft: oklch(0.3 0.08 297);
+  --secondary: oklch(0.6 0.18 277);
+  --secondary-foreground: oklch(0.14 0.03 290);
+  --muted: oklch(0.26 0.035 285);
+  --muted-foreground: oklch(0.72 0.025 285);
+  --accent: oklch(0.74 0.17 50);
+  --accent-foreground: oklch(0.16 0.03 40);
+  --accent-soft: oklch(0.32 0.08 55);
+  --success: oklch(0.72 0.14 158);
+  --success-foreground: oklch(0.14 0.03 155);
+  --destructive: oklch(0.66 0.21 25);
+  --destructive-foreground: oklch(0.99 0.005 300);
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 16%);
+  --ring: oklch(0.65 0.2 300);
+  --ink: oklch(0.97 0.006 285);
+  --shadow-soft: 0 1px 2px oklch(0 0 0 / 0.3), 0 14px 34px -14px oklch(0 0 0 / 0.55);
+  --shadow-lift: 0 2px 8px oklch(0 0 0 / 0.35), 0 30px 64px -26px oklch(0 0 0 / 0.6);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  .font-display {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+}
+
+@utility aurora {
+  background-image: var(--gradient-aurora);
+}
+
+@utility glass {
+  background: color-mix(in oklab, var(--card) 68%, transparent);
+  backdrop-filter: blur(20px) saturate(150%);
+  border: 1px solid color-mix(in oklab, var(--foreground) 8%, transparent);
+  box-shadow: var(--shadow-soft);
+}
+
+@utility surface {
+  background: var(--card);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-soft);
+}
+
+@utility lift {
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s ease;
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lift);
+  }
+}
+
+@utility text-gradient {
+  background-image: var(--gradient-hero);
+  background-clip: text;
+  color: transparent;
+}
+
+@utility gradient-hero {
+  background-image: var(--gradient-hero);
+}
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
